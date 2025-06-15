@@ -1,0 +1,18 @@
+package com.diemdt.literaturemuseum.repository;
+
+import com.diemdt.literaturemuseum.entity.Artifact;
+import com.diemdt.literaturemuseum.entity.Blog;
+import com.diemdt.literaturemuseum.entity.News;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface BlogRepository extends JpaRepository<Blog, Long> {
+    Page<Blog> findByNameContainingIgnoreCase(Pageable pageable, String search);
+
+    Page<Blog> findByUserId(Pageable pageable, Long userId);
+
+    Page<Blog> findByUserIdAndNameContainingIgnoreCase(Pageable pageable, Long userId, String search);
+}
