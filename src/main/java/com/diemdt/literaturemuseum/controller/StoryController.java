@@ -49,7 +49,7 @@ public class StoryController {
     }
 
     @GetMapping("/author/{authorId}")
-    public ResponseEntity<Page<StoryDTO>> getAllStoriesByAuthor(@PageableDefault(size = 10) Pageable pageable, @RequestParam(required = false) String authorId){
+    public ResponseEntity<Page<StoryDTO>> getAllStoriesByAuthor(@PageableDefault(size = 10) Pageable pageable, @PathVariable(required = true) String authorId){
         return ResponseEntity.ok(storyService.getAllStoriesByAuthor(pageable, authorId));
     }
 }

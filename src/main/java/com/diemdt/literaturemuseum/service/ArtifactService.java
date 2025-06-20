@@ -39,7 +39,6 @@ public class ArtifactService {
         existingArtifact.setName(artifactDTO.getName());
         existingArtifact.setUsdz(artifactDTO.getUsdz());
         existingArtifact.setModel(artifactDTO.getModel());
-        existingArtifact.setUrl(artifactDTO.getUrl());
 
 
         Artifact updatedArtifact = artifactRepository.save(existingArtifact);

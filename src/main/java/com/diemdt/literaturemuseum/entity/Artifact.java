@@ -24,7 +24,6 @@ public class Artifact {
 
     private String usdz;
 
-    private String url;
 
     private Integer view ;
 

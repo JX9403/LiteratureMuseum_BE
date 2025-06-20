@@ -8,9 +8,9 @@ import java.time.LocalDateTime;
 @Data
 public class CommentDTO {
     private Long id;
-    @NotBlank(message = "Comment name is required")
+    @NotBlank(message = "Comment content is required")
     private String content;
-    @NotBlank(message = "Comment userId is required")
+
     private Long userId;
 
     private Comment.Type targetType;

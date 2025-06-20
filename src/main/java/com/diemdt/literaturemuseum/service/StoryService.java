@@ -30,16 +30,22 @@ public class StoryService {
     private final FileRepo fileRepo;
 
     @Transactional
-    public StoryDTO createStory ( StoryDTO storyDTO ){
+    public StoryDTO createStory(StoryDTO storyDTO) {
         Story story = storyMapper.toEntity(storyDTO);
         story.setView(0);
-        Author author = authorRepository.findById(storyDTO.getAuthorId())
-                .orElseThrow(()-> new ResourceNotFoundException("Author not found"));
-        story.setAuthor(author);
+
+        if (storyDTO.getAuthorId() != null) {
+            Author author = authorRepository.findById(storyDTO.getAuthorId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Author not found"));
+            story.setAuthor(author);
+        } else {
+            story.setAuthor(null); // Cho phép không có author
+        }
 
         Story savedStory = storyRepository.save(story);
         return storyMapper.toDTO(savedStory);
     }
+
 
     @Transactional
     public StoryDTO updateStory ( Long id , StoryDTO storyDTO) {

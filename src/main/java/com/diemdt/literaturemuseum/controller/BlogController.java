@@ -19,7 +19,7 @@ public class BlogController {
     private final BlogService blogService;
 
     @PostMapping()
-    @PreAuthorize("hasRole('ADMIN')")
+
     public ResponseEntity<BlogDTO> createBlog (@RequestBody @Valid BlogDTO blogDTO){
         return ResponseEntity.ok(blogService.createBlog(blogDTO));
     }

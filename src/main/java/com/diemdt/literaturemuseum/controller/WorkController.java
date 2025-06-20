@@ -48,7 +48,7 @@ public class WorkController {
     }
 
     @GetMapping("/author/{authorId}")
-    public ResponseEntity<Page<WorkDTO>> getAllWorksByAuthor(@PageableDefault(size = 10) Pageable pageable, @RequestParam(required = false) String authorId){
+    public ResponseEntity<Page<WorkDTO>> getAllWorksByAuthor(@PageableDefault(size = 10) Pageable pageable, @PathVariable(required = true) String authorId){
         return ResponseEntity.ok(workService.getAllWorksByAuthor(pageable, authorId));
     }
 }

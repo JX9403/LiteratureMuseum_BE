@@ -21,8 +21,6 @@ public class ArtifactDTO {
 
     private String usdz;
 
-    private String url;
-
     private Integer view;
 
     private List<File> files = new ArrayList<>();

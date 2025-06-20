@@ -22,8 +22,8 @@ public class UserController {
         return ResponseEntity.ok(userService.getAllUsers(pageable, search));
     }
 
-    @GetMapping("/{email}")
-    public ResponseEntity<User> getUser(@PathVariable String email){
+    @GetMapping("/email")
+    public ResponseEntity<User> getUser(@RequestParam String email){
         return ResponseEntity.ok(userService.getUserByEmail(email));
     }
 }

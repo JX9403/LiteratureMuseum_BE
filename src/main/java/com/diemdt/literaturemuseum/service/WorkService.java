@@ -29,16 +29,22 @@ public class WorkService {
     private final FileRepo fileRepo;
 
     @Transactional
-    public WorkDTO createWork ( WorkDTO workDTO ){
+    public WorkDTO createWork(WorkDTO workDTO) {
         Work work = workMapper.toEntity(workDTO);
         work.setView(0);
-        Author author = authorRepository.findById(workDTO.getAuthorId())
-                .orElseThrow(()-> new ResourceNotFoundException("Author not found"));
-        work.setAuthor(author);
-        
+
+        if (workDTO.getAuthorId() != null) {
+            Author author = authorRepository.findById(workDTO.getAuthorId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Author not found"));
+            work.setAuthor(author);
+        } else {
+            work.setAuthor(null); // Cho phép tác phẩm không có tác giả
+        }
+
         Work savedWork = workRepository.save(work);
         return workMapper.toDTO(savedWork);
     }
+
 
     @Transactional
     public WorkDTO updateWork ( Long id , WorkDTO workDTO) {

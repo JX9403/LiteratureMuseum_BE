@@ -23,7 +23,7 @@ public class CommentController {
     private final CommentService commentService;
 
     // Thêm bình luận vào một target cụ thể
-    @PostMapping("/{targetType}/{targetId}")
+    @PostMapping
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<CommentDTO> addComment(
                                                  @AuthenticationPrincipal UserDetails userDetails,
